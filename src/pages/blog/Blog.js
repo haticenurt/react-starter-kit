@@ -1,10 +1,12 @@
+import { Helmet } from "react-helmet"
 export default function Blog(){
     return(
         <div>
+          <Helmet><title>Blog</title></Helmet>
             blog Sayfası
             <ul>
           <li>
-            <a href='#'>konu1</a><br></br>
+            <a href='/blog/todo'>ToDo uygulaması</a><br></br>
         
             </li>
           <li>
