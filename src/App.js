@@ -1,5 +1,5 @@
 
-import { Route,Routes,Link,NavLink, BrowserRouter } from "react-router-dom";
+import { Route,Routes,Link,NavLink, BrowserRouter, useMatch } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import BlogLayout from "./pages/blog";
@@ -11,7 +11,11 @@ import Profile from "./pages/Profile";
 import Login from "./pages/auth/login";
 import ToDo from "./pages/blog/ToDo";
 import { useTranslation } from "react-i18next";
-function App(){
+import { createModal, useModals} from "./utils/modal"
+import Modal from "./modals";
+  function App(){
+ const modals=useModals();
+ console.log(modals)
  const {t,i18n}=useTranslation();
  const clickHandle= async lang=>{
   await i18n.changeLanguage(lang)
@@ -44,6 +48,12 @@ function App(){
        <Route path="/auth/login" element={<Login/>}/>
     </Routes>
     </BrowserRouter>
+    <div>
+      {modals.length>0 &&<Modal/>}
+      <button onClick={()=>{
+        createModal('login')
+      }}>Modal Aç</button>
+    </div>
     <div>
       Aktif dil:{i18n.language}
       <nav>
